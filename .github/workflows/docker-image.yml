@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI VK
 
 on:
   push:
@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag web-app:last
     - name: DockerHub login
-      run: docker login --username rab_bit --password ${{ secrets.PASS_DOCKHUB }}
+      run: docker login --username sharks --password ${{ secrets.PASS_DOCKHUB }}
     - name: push dockerhub
       run: docker image push [USERNAME]/web-app:latest
