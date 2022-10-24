@@ -19,4 +19,4 @@ jobs:
     - name: DockerHub login
       run: docker login --username sharks --password ${{ secrets.PASS_DOCKHUB }}
     - name: push dockerhub
-      run: docker image push [USERNAME]/web-app:latest
+      run: docker image push sharks/web-app:latest
