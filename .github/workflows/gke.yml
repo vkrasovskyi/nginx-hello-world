@@ -41,6 +41,7 @@ jobs:
 
     # Alternative option - authentication via credentials json
     - id: 'auth'
+      name: google_authenticate
       uses: 'google-github-actions/auth@v0'
       with:
          credentials_json: '${{ secrets.GKE_SA_KEY }}'
