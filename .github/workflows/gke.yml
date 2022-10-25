@@ -41,20 +41,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Configure Workload Identity Federation and generate an access token.
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        token_format: 'access_token'
-        workload_identity_provider: 'projects/kube-ml-365607/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'terraform-gke@kube-ml-365607.iam.gserviceaccount.com'
-
     # Alternative option - authentication via credentials json
-    # - id: 'auth'
-    #   uses: 'google-github-actions/auth@v0'
-    #   with:
-    #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+     - id: 'auth'
+       uses: 'google-github-actions/auth@v0'
+       with:
+         credentials_json: '${{ secrets.GKE_SA_KEY }}'
 
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
