@@ -47,6 +47,11 @@ jobs:
       uses: 'google-github-actions/auth@v0'
       with:
          credentials_json: '${{ env.CRED }}'
+        
+    - name: Show gcloud
+      run: |
+        gcloud container clusters list
+        
 
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
