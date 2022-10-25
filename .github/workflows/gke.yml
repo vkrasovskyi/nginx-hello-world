@@ -57,7 +57,7 @@ jobs:
     - name: Set up GKE credentials
       uses: google-github-actions/get-gke-credentials@v0
       with:
-        cluster_name: ${{ env.GKE_CLUSTER }}
+        cluster_name: projects/kube-ml-365607/locations/us-central1/clusters/terraform-gke
         #location: ${{ env.GKE_ZONE }}
 
     # Set up kustomize
