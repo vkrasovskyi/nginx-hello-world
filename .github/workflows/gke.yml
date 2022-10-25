@@ -25,6 +25,7 @@ env:
   #REPOSITORY: samples # TODO: update to Artifact Registry docker repository
   IMAGE: sharks/web-app
   GKE_TRUST: ${{ secrets.GKE_SA_KEY }}
+  CRED: '{   "type": "service_account",   "project_id": "kube-ml-365607",   "private_key_id": "b696588e199f6ed044b8b196981f2a921387c2aa",   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDZqpQKghC1MyZt\nE2NDlsvkOSfcacSUs2f0lJ0d5SIFd1zaVtGgGgBwOkeVruilEbyLylI0aLdArrdh\nGilO78g1ELb4yJUUEdOI/fHy6mfi+6/Bb9VtoBIoKXlM3RbqpodpsXn+NOcVe1ST\njXPWbLS8OqlO+0zlRlv4xC1UD3SC4LIB+Q8526is02puOFY5qHVVbwBTZsE+1C4p\nH9MyrBvYFmv7z08GLxUHcjeuAdkbgGStqQ55TbkmnxUBibXcH0g6TfliW0Ut2AhZ\nYTF14isCi5nGDPUKwf3T+ak3kycAWv6nN3Qrqlq9ptetGaDl0PshPDvuECh87quM\nbJLXq2LJAgMBAAECggEALTbTQKmK6fDhmwfLd1dELDi5MH5iANeRkQsr5fFaU1Nb\nnNkq+zxbefSJOS0Xk25vQYR59fwIkO2aFxgVm5mQd4Fs2Jnl6cDYNZ02nJSXlt1c\nQWzHI1n8W45d7ZsBbyW/fDOLGUSI+fvf8jSQauqy0mTHFap66ydl5HNvzQXW2HaN\nQDZ+fBS3K+IY43Ok/La2TuzPIEuzU2/Zkfg3N8ib7T4YQ4GRPv2vVkfUs/JQtf2R\n3l3ktPr+Rd8tOnUIJEZOJEm9oo3kOHH7C/bBDMdmQxrWHz8QktNsZNSS7zXOpz54\nUN7UjJkxCoZnEqVUDims7fJ3XKZSL/IPjIJhcEwleQKBgQDukLLH1TXsiIjfYsLZ\nqItGL+mKWUHY/jRu9RRc6AsvW3fOHZogEVy1UnVeR9f1kTrtHY2Igm117+oTyhve\nqTUFBu+FL6ewqNcKwwFItgft6hpqqAubYBsLOGUb4p+9Vn8uTCpdpskyNt4l4ooy\n+k1H//QM4U13nKsZPflxt1v4hQKBgQDpkuI0gJQI6Sd8W3RGWue9hmba32XDTsV4\nJKNiDrg1qzB+yoNI4LOtm1WvBsj3MeIa0/NV/trcXPAzWQdJVEkKY7C1M28zVGYf\njza3hIYrtdZD7Fj3KzYuITe3hky10BYsdJqr2Y2krnkBzhaJ3TpSSFxFXnk+AGMs\nVfRF1Hf2dQKBgQCB2hD15H+td8PIk6EriCoG0h10SJEm43b2zj9/Mm6kIE1dy48Q\n1WJ476Ei6EgMSjigx+052IRsJWJr0x7IW6GYUuYcwIuuBLjICsywHyTBwyMN2to2\ngGE4AkJGo1v/Ww1uzdZhk18ADg1s4ZoHlWZrQk48lIXuDUC0RJ953iwZYQKBgEbb\nGSYGL2I4oJLYB4DkSNK0t/UDuhIyjjLxImM3xef6A58i/gqYp8ktiyOqckKS7l1n\nGLVot6oLw45AHra/C91L+qotbTlsDALc5iNr32vZIKPASgjJIgmCaC2TXyf0dRWN\nVfJ178Mabnj+tNWjt/KIIv2kODF32p3zgUPBvZaVAoGAOF/VkIYa3c0yFxpkWCLq\n6OOqO9Rogl6wmMWps0IDkrJyUNDvyaiPv7klMIIGp0rhg5tYgeYpeQ4cBNNR81gN\ntUXIwzOme/II0qROg8qsom7VdjkXAxbR5mD6dcfxmbSFUkA11JmoXSX4/w0cJlrC\n7dbYxJK+QLFvBZgthZ+FWFg=\n-----END PRIVATE KEY-----\n",   "client_email": "terraform-gke@kube-ml-365607.iam.gserviceaccount.com",   "client_id": "103449481235007677191",   "auth_uri": "https://accounts.google.com/o/oauth2/auth",   "token_uri": "https://oauth2.googleapis.com/token",   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/terraform-gke%40kube-ml-365607.iam.gserviceaccount.com" }'
 
 jobs:
   setup-build-publish-deploy:
@@ -45,7 +46,7 @@ jobs:
       name: google_authenticate
       uses: 'google-github-actions/auth@v0'
       with:
-         credentials_json: '${{ env.GKE_TRUST }}'
+         credentials_json: '${{ env.CRED }}'
 
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
