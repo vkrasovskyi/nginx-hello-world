@@ -16,10 +16,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag web-app:last
-        docker image tag web-app:last sharks/web-app:latest
+        docker build . --file Dockerfile --tag web-app:$GITHUB_SHA
+        docker image tag web-app:last sharks/web-app:$GITHUB_SHA
         docker images
     - name: DockerHub login
       run: docker login --username sharks --password ${{ secrets.PASS_DOCKHUB }}
     - name: push dockerhub
-      run: docker image push sharks/web-app:latest
+      run: docker image push sharks/web-app:$GITHUB_SHA
